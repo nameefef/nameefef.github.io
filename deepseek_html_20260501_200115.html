@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>nameefef · 深色导航</title>
+    <style>
+        /* ---------- 深色主题重置 · 不花哨 干净利落 ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0c10;
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            color: #eef2ff;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 主容器：保持干净宽约束 */
+        .container {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 头部：极简分割，无阴影 */
+        .site-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #2a2e3a;
+            padding-bottom: 1.2rem;
+        }
+        .site-name {
+            font-size: 2.2rem;
+            font-weight: 520;
+            letter-spacing: -0.3px;
+            color: #f0f3fa;
+        }
+        .site-domain {
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #9aa4bf;
+            margin-top: 6px;
+            word-break: break-all;
+        }
+        .proxy-warning {
+            margin-top: 16px;
+            background: rgba(245, 158, 11, 0.12);
+            border-left: 3px solid #f59e0b;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: #fcdba0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(2px);
+            font-weight: 450;
+        }
+        .proxy-warning span:first-child {
+            font-size: 1rem;
+        }
+
+        /* 双卡片容器 */
+        .nav-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+            justify-content: center;
+            margin: 1.2rem 0 1rem;
+        }
+
+        /* 卡片深色风格 — 纯黑底 + 细线，无悬停特效 */
+        .nav-card {
+            flex: 1;
+            min-width: 230px;
+            background: #0f1117;
+            border: 1px solid #2c2f3a;
+            border-radius: 20px;
+            transition: none;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #eef2ff;
+        }
+        .nav-card:hover {
+            background: #0f1117;
+            border-color: #3e4250;
+            /* 没有任何位移/阴影/光效，极致克制 */
+        }
+
+        .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.7rem;
+            opacity: 0.85;
+        }
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 510;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.2px;
+        }
+        .card-desc {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-bottom: 12px;
+        }
+
+        /* 显示完整重定向路径（mono 深色灰底） */
+        .redirect-path {
+            background: #1a1c24;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.7rem;
+            padding: 0.4rem 0.7rem;
+            border-radius: 40px;
+            color: #b9c3e0;
+            word-break: break-all;
+            display: inline-block;
+            border: 0.5px solid #2a2e3a;
+        }
+
+        /* 模拟“打不开就是需要梯子”的辅助文案，放在卡片底部 */
+        .hint-tip {
+            font-size: 0.65rem;
+            color: #7f8ea3;
+            margin-top: 14px;
+            border-top: 1px dashed #262a33;
+            padding-top: 10px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* 底部区域 */
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #5f6c84;
+            border-top: 1px solid #202430;
+            padding-top: 1.8rem;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 560px) {
+            body {
+                padding: 1.4rem 1rem;
+            }
+            .site-name {
+                font-size: 1.8rem;
+            }
+            .nav-card {
+                padding: 1.5rem 0.8rem;
+            }
+            .card-title {
+                font-size: 1.5rem;
+            }
+            .proxy-warning {
+                font-size: 0.7rem;
+                padding: 0.5rem 0.9rem;
+            }
+        }
+
+        /* 保证所有链接无额外修饰 */
+        a {
+            text-decoration: none;
+        }
+        a:focus-visible {
+            outline: 1px solid #8f9bb3;
+            outline-offset: 2px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="site-header">
+        <div class="site-name">nameefef</div>
+        <div class="site-domain">nameefef.github.io</div>
+        <!-- 代理(vpn)文字提醒：清晰可见但保持低调 -->
+        <div class="proxy-warning">
+            <span>🌐</span>
+            <span>有些时候可能需要代理 / VPN 才能顺畅访问</span>
+        </div>
+    </div>
+
+    <div class="nav-grid">
+        <!-- 博客板块 - 重定向 /blog -->
+        <a href="/blog" class="nav-card" target="_self" rel="noopener noreferrer">
+            <div class="card-icon">📄</div>
+            <div class="card-title">博客</div>
+            <div class="card-desc">文字 · 迪克 · 黑调</div>
+            <div class="redirect-path">nameefef.github.io/blog</div>
+            <div class="hint-tip">⚡ 直达个人博客</div>
+        </a>
+
+        <!-- 阴乐板块 - 重定向 /music （故意保留“阴乐”字样） -->
+        <a href="/music" class="nav-card" target="_self" rel="noopener noreferrer">
+            <div class="card-icon">🎵</div>
+            <div class="card-title">阴乐</div>
+            <div class="card-desc">旋律 · 音京</div>
+            <div class="redirect-path">nameefef.github.io/music</div>
+            <div class="hint-tip">🎧 自留地 · 沉浸氛围</div>
+        </a>
+    </div>
+
+    <div class="footer">
+        <span>© 1978-2091 nameefef（Android Group)EasonYin</span>
+        <span style="margin:0 8px">·</span>
+        <span>格调导航站 · 双入口直达色情网站</span>
+    </div>
+</div>
+</body>
+</html>
